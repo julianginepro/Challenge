@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+ 
+    <title>Login</title>
+    
+  </head>
+
+  <body>
+    <h1>User Login</h1>
+    <form action="/users/login" method="POST">
+      <div>
+        <label for="email"></label>
+        <input type="email" name="email" id="email" placeholder="Ingrese email" />
+        <% if (locals.errors && errors.email) { %>
+        <p class="text"><%= errors.email.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="password"></label>
+        <input type="password" name="password" id="password" placeholder="Ingrese la contraseña"/>
+      </div>
+      <div>
+        <label for="token">
+          <input type="checkbox" name="token" />Recordar mi usuario
+        </label>
+      </div>
+      <button type="submit">Inicia Sesión</button>
+    </form>
+    <div>
+      <p>¿ No tenés cuenta?</p>
+      <button><a href="/users/register">Registrate</a></button>
+    </div>
+  </body>
+</html>

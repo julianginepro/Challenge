@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <%- include('./partials/head'); %>
+    
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+
+  <body>
+    <main>
+      <section>
+        
+        <!-- me tengo que fijar si está logueado el usuario -->
+        <% if (!locals.user) { %> 
+        <!-- si no esta logueado entonces solo dejo que se vea la pagina -->
+        <div>
+          <button><a href="/users/login">Login</a></button>
+        
+          <button><a href="/users/register">Registro</a></button>
+        </div>
+        <% } else { %>
+        <!-- en caso de que este logueado muestro al usuario en pantalla -->
+        <div>
+          <% if (locals.user.rol === 1) { %> 
+          <h1>Administrador: <%= locals.user.name %></h1>
+          <h1>Permisos completos para crear, modificar y borrar películas</h1>
+          <% } else { %>
+            <h1>Usuario: <%= locals.user.name %></h1>
+            <h1>Permisos: solo lectura</h1>
+          <% } %>
+        </div>
+        <div>
+        <!-- agrego boton para desloguear si así quisiera -->
+          <button><a href="/users/logout">Logout</a></button>
+        </div>
+        <div>
+        <!-- agrego boton para crear pelicula -->
+          <button>
+            <a href="/movies/createMovies">Agregar una Película</a>
+          </button>
+        </div>
+        <% } %>
+      </section>
+<!-- a continiacion hago listado de peliculas -->
+      <section>
+        <h2>Listado de todas las Películas</h2>
+        <% for (let i=0; i < allMovie.length; i++) { %>
+        <!-- creo listado de peliculas -->
+        <ul>
+          <li>
+            <a href="/movies/detailMovies/<%= allMovie[i].id %>">
+              <%= allMovie[i].title %>
+            </a>
+          </li>
+        </ul>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

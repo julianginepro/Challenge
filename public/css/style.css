@@ -1,0 +1,19 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding: 40px;
+  font: 20px "Arial", Arial, Times New Roman, serif;
+}
+
+a {
+  color: #3c26b9;
+}
+img{
+  width: 50%;
+}
+figure{
+  width: 20%;
+}

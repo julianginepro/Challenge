@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <h1>AGREGAR una PELICULA</h1>
+    <form action="/movies/createMovies" method="POST">
+      <div>
+        <label for="title">Título</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value="<%= locals.old && old.title %>"
+        />
+        <% if (locals.errors && errors.title) { %>
+        <p class="text"><%= errors.title.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="rating">Rating</label>
+        <input
+          type="number"
+          name="rating"
+          id="rating"
+          value="<%= locals.old && old.rating %>"
+        />
+        <% if (locals.errors && errors.rating) { %>
+        <p class="text"><%= errors.rating.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="awards">Premios</label>
+        <input
+          type="number"
+          name="awards"
+          id="awards"
+          value="<%= locals.old && old.awards %>"
+        />
+        <% if (locals.errors && errors.awards) { %>
+        <p class="text"><%= errors.awards.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="release_date">Fecha de estreno</label>
+        <input
+          type="date"
+          name="release_date"
+          id="release_date"
+          value="<%= locals.old && old.release_date %>"
+        />
+        <% if (locals.errors && errors.release_date) { %>
+        <p class="text"><%= errors.release_date.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="length">Duración</label>
+        <input
+          type="number"
+          name="length"
+          id="length"
+          value="<%= locals.old && old.length %>"
+        />
+        <% if (locals.errors && errors.length) { %>
+        <p class="text"><%= errors.length.msg %></p>
+        <% } %>
+      </div>
+      <div>
+        <label for="">Género</label>
+        <select name="genre">
+          <% for (let i=0; i < genre.length; i++) { %>
+          <option value="<%= genre[i].id %>"><%= genre[i].name %></option>
+          <% } %>
+        </select>
+      </div>
+      <button type="submit">Guardar</button>
+      <button type="reset">Cancelar</button>
+    </form>
+    <button><a href="/">Volver al listado de películas</a></button>
+  </body>
+</html>

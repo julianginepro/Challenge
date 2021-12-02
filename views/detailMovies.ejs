@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <section>
+      <h1>DETALLE PELICULA</h1>
+      <article>
+        <p>Título: <%= detail.title %></p>
+        <p>Rating: <%= detail.rating %></p>
+        <p>Premios: <%= detail.awards %></p>
+        <p>Fecha de estreno: <%= detail.release_date %></p>
+        <p>Duración: <%= detail.length %></p>
+        <p>Género: <%= detail.genre.name %></p>
+        <p>Actores presentes en la película:</p>
+        <ul>
+          <% for (let i=0; i < detail.actors.length; i++) { %>
+          <li>
+            <%= detail.actors[i].first_name %> <%= detail.actors[i].last_name %>
+          </li>
+          <% } %>
+        </ul>
+      </article>
+    </section>
+    <section>
+      <% if (!locals.user) { %>
+      <button><a href="/">Volver al listado de peliculas</a></button>
+
+      <% } else { %>
+      <button>
+        <a href="/movies/deleteMovies/<%= detail.id %>">Eliminar película</a>
+      </button>
+      <button>
+        <a href="/movies/editMovies/<%= detail.id %>">Modificar Película</a>
+      </button>
+      <button><a href="/">Volver al listado de películas</a></button>
+      <% } %>
+    </section>
+  </body>
+</html>
